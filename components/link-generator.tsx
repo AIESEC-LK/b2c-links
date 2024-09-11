@@ -25,7 +25,7 @@ export function LinkGenerator() {
   const [platformType, setPlatformType] = useState('signups')
   const [product, setProduct] = useState('')
   const [entity, setEntity] = useState('')
-  const [campaignTag, setCampaignTag] = useState('LK-')
+  const [campaignTag, setCampaignTag] = useState('')
   const [campaignSource, setCampaignSource] = useState('')
   const [campaignMedium, setCampaignMedium] = useState('')
   const [campaignTerm, setCampaignTerm] = useState('')
@@ -210,9 +210,9 @@ export function LinkGenerator() {
           )}
 
           <div className="mt-6 p-4 bg-gray-100 rounded-md">
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Learn More About B2C Platforms</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">More Resources B2C Platforms</h3>
             <p className="text-sm text-gray-600 mb-2">
-              Discover more about our B2C platforms and how they can benefit your organization.
+              Discover more about our B2C platforms and how you can work.
             </p>
             <a 
               href="https://example.com/b2c-platforms-presentation" 
@@ -220,7 +220,7 @@ export function LinkGenerator() {
               rel="noopener noreferrer"
               className="inline-flex items-center text-blue-600 hover:text-blue-800"
             >
-              View Presentation <ExternalLink className="ml-1 h-4 w-4" />
+              Learn More <ExternalLink className="ml-1 h-4 w-4" />
             </a>
           </div>
         </CardContent>
