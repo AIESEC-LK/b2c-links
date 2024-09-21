@@ -11,18 +11,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ExternalLink } from 'lucide-react'
 
 const products = {
-  signups: { oGV: 'volunteer', oGTa: 'talent', oGTe: 'teach' },
-  presignups: { oGV: 'volunteer', oGTa: 'talent', oGTe: 'teacher' }
+  'signups': { oGV: 'volunteer', oGTa: 'talent', oGTe: 'teach' },
+  'presignups' : { oGV: 'volunteer', oGTa: 'talent', oGTe: 'teacher' }
 }
 
-const entities = { CC: 'Colombo Central', CN: 'Colombo North' }
+type PlatformType = 'signups' | 'presignups';
+
+const entities = { CC: 'Colombo Central', CN: 'Colombo North', CS: "Colombo South", Kandy: "Kandy", USJ: "USJ", SLIIT: "SLIIT", NSBM: "NSBM", NIBM: "NIBM" }
 
 const campaignSources = ['Blog', 'Classroom', 'Email', 'Facebook', 'Friend', 'Instagram', 'Linkedin', 'Official Media', 'Website']
 const campaignMediums = ['Blog', 'Email', 'Offline Marketing', 'Organic Social Media', 'Paid Social Media', 'Partner Posts', 'Stories', 'University Posts']
 const campaignContents = ['General', 'GT', 'GV']
 
 export function LinkGenerator() {
-  const [platformType, setPlatformType] = useState('signups')
+  const [platformType, setPlatformType] = useState<PlatformType>('signups')
   const [product, setProduct] = useState('')
   const [entity, setEntity] = useState('')
   const [campaignTag, setCampaignTag] = useState('')
@@ -43,7 +45,8 @@ export function LinkGenerator() {
 
     const baseUrl = platformType === 'signups' ? 'signup.aiesec.lk' : 'apply.aiesec.lk'
     const entityParam = platformType === 'signups' ? 'ley' : 'entity'
-    let link = `${baseUrl}/${products[platformType][product]}?${entityParam}=${entity}`
+    // let link = `${baseUrl}/${products[platformType][product]}?${entityParam}=${entity}`
+    let link = `${baseUrl}/${products[platformType]?.[product as keyof typeof products[typeof platformType]]}?${entityParam}=${entity}`
 
     const campaignFields = [
       { key: 'campaign_tag', value: campaignTag },
@@ -90,7 +93,7 @@ export function LinkGenerator() {
 
           <div className="space-y-2">
             <Label className="text-gray-700">Platform Type</Label>
-            <RadioGroup defaultValue="signups" onValueChange={setPlatformType} className="flex space-x-4">
+            <RadioGroup defaultValue="signups" onValueChange={(value: string) => setPlatformType(value as PlatformType)} className="flex space-x-4">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="signups" id="signups" />
                 <Label htmlFor="signups" className="text-gray-600">Signups</Label>
